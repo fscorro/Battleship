@@ -1,0 +1,49 @@
+#game {
+	position:fixed;
+	top:-50%;
+	left:-50%;
+	width:200%;
+	height:200%;
+}
+#game img {
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	margin:auto;
+	min-width:50%;
+	min-height:50%;
+}
+#login{
+	margin: 18% 0% 0% 21%;
+	position: absolute;
+	width:429px;
+	height:400px;
+	z-index: 70;
+	background-image:url("/assets/images/logo.png");
+	background-repeat:no-repeat;
+	background-position:0px 250px;
+}
+#black-opacity{
+	margin:18% 0% 0% 12%;
+	width:328px;
+	height:200px;
+	background:#000000;
+	opacity:0.5;
+}
+
+#username{
+	margin:21% 0% 0% 16%;
+	color:    #000000;
+}
+#btnSingIn{
+	margin:8% 0% 0% 40%;
+	color:    #000000;
+}
+::-webkit-input-placeholder {
+    color:    #000000;
+}
+:-moz-placeholder {
+    color:    #000000;
+}

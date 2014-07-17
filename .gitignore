@@ -11,4 +11,6 @@ dist
 *.ipr
 *.project
 *.classpath
+*.DS_Store
+.DS_Store
 .settings/

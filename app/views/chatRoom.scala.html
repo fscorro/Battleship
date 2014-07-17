@@ -1,0 +1,115 @@
+@(username: String)
+
+@main(username) {
+<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/strategy.css")">
+<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/smoke.css")">
+<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/dark.css")">
+<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/tooltip.css")">
+
+<div id="onError" class="alert-message error">
+    <p>
+        <strong>Oops!</strong> <span></span>
+    </p>
+</div>
+
+<div id="players">
+    <div id="myPlayer"></div>
+    <div id="opPlayer"></div>
+</div>
+
+<div id="boards">
+    <div id="myBoard"></div>
+    <div id="opBoard"></div>
+    <div id="strategyBoard"></div>
+    <div id="shipsBoard">
+		<div id="shipsBoardAircraft">
+        	<div id="aircraft" class="Ntooltip">
+				<span>
+					Aircraft
+				</span>
+        		<div class="sheep"></div>
+        		<div class="sheep"></div>
+        		<div class="sheep"></div>
+        		<div class="sheep"></div>
+        		<div class="sheep"></div>
+        	</div>
+        </div>
+		<div id="shipsBoardCruiser" class="Ntooltip">
+        	<div id="cruiser">
+				<span>
+					Cruiser
+				</span>
+        		<div class="sheep"></div>
+        		<div class="sheep"></div>
+        		<div class="sheep"></div>
+        	</div>
+        </div>
+		<div id="shipsBoardBattleship" class="Ntooltip">
+        	<div id="battleship">
+				<span>
+					Battleship
+				</span>
+        		<div class="sheep"></div>
+        		<div class="sheep"></div>
+        		<div class="sheep"></div>
+        		<div class="sheep"></div>
+        	</div>
+        </div>
+		<div id="shipsBoardSubmarine" class="Ntooltip">
+        	<div id="submarine">
+				<span>
+					Submarine
+				</span>
+        		<div class="sheep"></div>
+        		<div class="sheep"></div>
+				<div class="sheep"></div>
+        	</div>
+        </div>
+		<div id="shipsBoardDestroyer" class="Ntooltip">
+        	<div id="destroyer">
+				<span>
+					Destroyer
+				</span>
+        		<div class="sheep"></div>
+				<div class="sheep"></div>
+        	</div>
+        </div>
+    </div>
+</div>
+<div id="onChat">
+	<div id="main">
+        <div id="messages">
+        </div>
+    </div>
+	<div id="talkInput">
+		<input id="talk" type="text" placeholder="Chat Here">
+	</div>
+</div>
+<div id="buttonZone">
+    <input id="xArea" type="text" placeholder="X">
+    <input id="yArea" type="text" placeholder="Y">
+    <button id="sendStrategyBt" onclick="sendStrategy()">Send Strategy</button>
+    <button id="randomStrategyBt" onclick="sendRandomStrategy()">Send Random Strategy</button>
+    <button id="fireBt" onclick="fire()">Fire!</button>
+    <button id="autoBt" onclick="autoPlay()">Auto Play</button>
+    <button id="playersBt" onclick="playersInfo()">Players Info</button>
+    <button id="infoBt" onclick="getServerInfo()">Server Info</button>
+    <button id="hideChatBt" onclick="hideChat()">Chat</button>
+</div>
+
+<script src="@routes.Assets.at("javascripts/smoke.min.js")" type="text/javascript"></script>
+<script src="@routes.Assets.at("javascripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+<script src="@routes.Assets.at("javascripts/jquery-ui-1.8.1.custom.min.js")" type="text/javascript"></script>
+<script src="@routes.Assets.at("javascripts/webSocket.js")" type="text/javascript"></script>
+<script src="@routes.Assets.at("javascripts/battleShip.js")" type="text/javascript"></script>
+<script src="@routes.Assets.at("javascripts/dragAndDrop.js")" type="text/javascript"></script>
+<script src="@routes.Assets.at("javascripts/strategyConfig.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function() { initWebSocket("@routes.Application.game(username).webSocketURL(request)"); });
+	window.alert = function(txt) {
+		smoke.alert(txt);
+	}
+</script>
+
+
+}

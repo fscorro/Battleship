@@ -1,0 +1,334 @@
+html {
+    /*background-color: #15203D;*/
+    /*background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #15203D), color-stop(1, #4a85eb));*/
+    background-image:url("/assets/images/backgroundGame.png");
+	background-repeat:repeat;
+	height: 100%;
+}
+
+body {
+    margin-top: 40px;
+    background: transparent;
+}
+
+.container > footer p {
+    text-align: center; /* center align it with the container */
+    color: #fffafa;
+}
+
+.container {
+    width: 820px; /* downsize our container to make the content feel a bit tighter and more cohesive. NOTE: this removes two full columns from the grid, meaning you only go to 14 columns and not 16. */
+}
+
+/* The white background content wrapper */
+.content {
+    /*background-color: #625d5a;
+    background-image:url("http://www.graphicsgrotto.com/backgrounds/metal/images/bgmetal38.jpg");
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #625d5a), color-stop(1, #d1cbc5));
+    border-bottom: 5px solid #111111;
+    border-left: 5px solid #111111;
+    border-right: 5px solid #111111;
+    background-repeat: repeat;*/
+    padding: 20px;
+    -webkit-border-radius: 0 0 30px 30px;
+    -moz-border-radius: 0 0 30px 30px;
+    border-radius: 0 0 30px 30px;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
+    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .15);
+    min-height: 10px;
+}
+
+/* Page header tweaks */
+.page-header {
+    background-color: #f5f5f5;
+    padding: 20px 20px 10px;
+    margin: -20px -20px 20px;
+}
+
+/* Styles you shouldn't keep as they are for displaying this base example only */
+.content .span10,
+.content .span4 {
+    min-height: 600px;
+}
+
+/* Give a quick and non-cross-browser friendly divider */
+.content .span4 {
+    padding-left: 9px;
+    margin-left: 10px;
+    border-left: 1px solid #eee;
+}
+
+.topbar .btn {
+    border: 0;
+}
+
+.topbar p {
+    color: #9999ff;
+}
+
+#username {
+    width: 200px;
+}
+
+#onError {
+    display: none;
+}
+
+#onChat {
+    display: block;
+    width: 768px;
+    height: 200px;
+	background:#000000;
+	opacity:0.5;
+}
+
+#messages {
+    position: absolute;
+    bottom: 20px;
+    width: 756px;
+    /*border: 1px solid #cccccc;*/
+    background: #fffff0;
+    border: 2px solid #111111;
+}
+
+#main {
+    width: 760px;
+    height: 215px;
+    position: relative;
+    overflow: hidden;
+    border-top: 2px solid #111111;
+	padding:0px 4px 0px 4px;
+}
+
+#talk {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 756px;
+    height: 20px;
+    color: #000;
+    border: 2px solid rgba(83, 83, 83, 0.94);
+}
+
+#talkInput{
+	margin: 16px 0px 0px 0px;
+	position:relative;
+	bottom: 0px;
+}
+
+.message {
+    padding: 4px 0;
+    border-bottom: 2px solid #000;
+    position: relative;
+}
+
+.message span {
+    width: 70px;
+    overflow: hidden;
+    text-align: center;
+    font-weight: bold;
+    margin-right: 5px;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+}
+
+.message p {
+    font-size: 17px;
+    display: inline-block;
+    margin: 0;
+    width: 570px;
+    vertical-align: middle;
+}
+
+.message user {
+    width: auto;
+    overflow: hidden;
+    text-align: center;
+    font-weight: bold;
+    margin-right: 5px;
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    font-size: 18px;
+}
+
+.message.chat {
+    background: #FFC;
+}
+
+.message.start, .message.end {
+    background: #b7d0fb;
+}
+
+.message.leave {
+    background: #ff6960;
+}
+
+.message.myShot {
+    background: #6bff7a;
+}
+
+.message.opShot {
+    background: #ff6960;
+}
+
+.message.mistake {
+    background: #ffff65;
+}
+
+.message.autoPlay {
+    background: #ffcc6f;
+}
+
+.message.info {
+    background: #99ff99;
+}
+
+#xArea, #yArea {
+    margin-top: 20px;
+    width: 30px;
+    height: 25px;
+}
+
+#fireBt, #infoBt, #autoBt, #playersBt, #sendStrategyBt, #randomStrategyBt,#hideChatBt {
+    margin: 10px;
+    margin-top: 30px;
+    color: #ffffff;
+    border: 2px solid #111111;
+    background-color: #0a2679;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #15203D), color-stop(1, #2f498c));
+    text-align: center;
+    font-weight: bolder;
+    font-size: 20px;
+    width: auto;
+    padding-right: 12px;
+    padding-left: 12px;
+    height: 33px;
+    border-radius: 10px;
+    display: none;
+}
+
+#fireBt:hover, #infoBt:hover, #autoBt:hover, #playersBt:hover, #sendStrategyBt:hover, #randomStrategyBt:hover,#hideChatBt:hover {
+    /*border: 2px solid #8af584;*/
+    color: #fffff0;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.btn {
+    width: 70px;
+}
+
+/* formats for battlefield */
+button {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #fff5ee;
+}
+
+#buttonZone{
+    margin-top: 10px;
+}
+
+#opBoard button:hover {
+    border: 3px solid #00dd2e;
+}
+
+.anno {
+    font-weight: bold;
+    pointer-events: none;
+    border: 1px solid rgba(9, 0, 10, 0.63);
+    background-image: -webkit-gradient(linear, right top, left bottom, color-stop(0, #d7d2d5), color-stop(1, #e8e3e6));
+}
+
+.empty {
+    background-color: #EEE;
+}
+
+.ship {
+    background-color: #009900;
+    border-radius: 15px;
+    -webkit-transform: scale(0.9, 0.9);
+    background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #009900), color-stop(1, #00e300));
+    border: 2px solid #000000;
+}
+
+.water {
+    background-color: #add8e6;
+    background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #add8e6), color-stop(1, #72dae6));
+}
+
+.miss {
+    background-color: #8b88e6;
+    pointer-events: none;
+    background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #8b88e6), color-stop(1, #4d52e6));
+
+}
+
+.hit {
+    border-radius: 15px;
+    -webkit-transform: scale(0.9, 0.9);
+    background-color: #fb8969;
+    pointer-events: none;
+    background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #ff5661), color-stop(1, #ff5a47));
+    border: 2px solid #000000;
+}
+
+.sink {
+    background-color: #ff0005;
+    border-radius: 15px;
+    -webkit-transform: scale(0.9, 0.9);
+    pointer-events: none;
+    background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #f90005), color-stop(1, #f9243b));
+    border: 2px solid #000000;
+}
+
+#boards {
+    display: inline-block;
+    margin: 5px;
+	width:auto;
+}
+
+#opBoard {
+    border: 3px solid #111111;
+    float: right;
+    background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #add8e6), color-stop(1, #72dae6));
+    /*background-color: #add8e6;*/
+    display: none;
+}
+
+#myBoard {
+    border: 3px solid #111111;
+    margin-right: 40px;
+    float: left;
+    background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #add8e6), color-stop(1, #72dae6));
+    /*background-color: #add8e6;*/
+    display: none;
+}
+
+#players {
+    display: none;
+}
+
+#opPlayer, #myPlayer {
+    border: 5px solid #111111;
+    position: absolute;
+    top: 90px;
+    width: 220px;
+    height: 220px;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #625d5a), color-stop(1, #d1cbc5));
+}
+
+#opPlayer {
+    left: 10px;
+}
+
+#myPlayer {
+    right: 10px;
+}
+
+

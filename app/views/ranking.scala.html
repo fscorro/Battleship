@@ -1,0 +1,37 @@
+@main(null) {
+
+<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/ranking.css")">
+
+@if(flash.containsKey("error")) {
+<div class="alert-message error">
+    <p>
+        <strong>Oops!</strong> @flash.get("error")
+    </p>
+</div>
+}
+
+<section>
+    <table>
+        <thead>
+        <tr>
+            <th>Nick</th>
+            <th>Moves</th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="7">Populating Table...</td>
+        </tr>
+        </tfoot>
+    </table>
+</section>
+
+<script src="@routes.Assets.at("javascripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+<script src="@routes.Assets.at("javascripts/ranking.js")"></script>
+<script type="text/javascript">
+        $(function() { fillTable(); });
+</script>
+
+}

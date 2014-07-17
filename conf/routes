@@ -1,0 +1,12 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /battleShip                            controllers.Application.index()
+GET     /battleShip/gameRoom                   controllers.Application.chatRoom(username: String ?= null)
+GET     /battleShip/gameRoom/Play              controllers.Application.game(username)
+GET     /battleShip/ranking                    controllers.Application.ranking()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)

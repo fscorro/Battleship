@@ -1,0 +1,71 @@
+@(connected: String)(content: Html)
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>BATTLESHIP GAME</title>
+        <meta http-equiv="X-UA-Compatible" content="chrome=1">
+		
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.css")">
+        
+		@if(connected == null) {
+			<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/login.css")">
+		}else{
+			<link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+			<link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.jpg")">
+		}
+
+        <script type="text/javascript">
+                  var _gaq = _gaq || [];
+                  _gaq.push(['_setAccount', 'UA-32114287-1']);
+                  _gaq.push(['_trackPageview']);
+
+                  (function() {
+                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                  })();
+        </script>
+
+    </head>
+
+    <body>
+        <!--[if IE]><h3 class=chromeframe>Your browser can't render this site. <a href="http://www.google.com/chromeframe/?redirect=true">Click to Fix it!</a></h3><![endif]-->
+        @if(connected != null) {
+			<div class="topbar">
+            	<div class="fill">
+                	<div class="container">
+                    	<a class="brand" href="@routes.Application.index()">DPOI - BATTLESHIP</a>
+                        <p class="pull-right">
+                            Logged in as @connected —
+                            <a href="@routes.Application.index()">Disconnect</a>
+                        </p>
+                    	<p class="pull-left">
+                        	<a href="@routes.Application.ranking">Ranking</a>
+                    	</p>
+                	</div>
+            	</div>
+        	</div>
+		}
+        <div class="container">
+			@if(connected == null) {
+				<div id="login">
+					<form action="@routes.Application.chatRoom()">
+						<div id="black-opacity">
+							<input id="username" name="username" class="input-large" type="text" placeholder="Username">
+							<button id="btnSingIn" class="btn" type="submit">&{'hello'}Sign in</button>
+						</div>
+					</form>
+				</div>
+				<div id="game">
+					<img src="@routes.Assets.at("images/background.png")" alt="">
+				</div>
+            }else{
+				<div class="content">
+	                @content
+	            </div>
+			}
+        </div>
+    </body>
+</html>

@@ -1,0 +1,125 @@
+#game {
+    width: 800px;
+    height: 320px;
+}
+
+#shipsBoardAircraft{
+	width: 160px;
+    height: 160px;
+    margin: 0px 10px 0px 0px;
+	float:left;
+}
+
+#shipsBoardCruiser {
+    width: 96px;
+    height: 96px;
+    margin: 0px 0px 0px 0px;
+	float:left;
+}
+
+#shipsBoardBattleship{
+	width: 128px;
+    height: 128px;
+    margin: 0px 10px 0px 0px;
+	float:left;
+}
+
+#shipsBoardSubmarine {
+    width: 96px;
+    height: 96px;
+    margin: 0px 0px 0px 0px;
+	float:left;
+}
+
+#shipsBoardDestroyer{
+	width: 64px;
+    height: 64px;
+    margin: 0px 0px 0px 0px;
+	float:left;
+}
+
+#shipsBoard{
+	width: 288px;
+    height: 288px;
+    margin: 0px 0px 20px 0px;
+	float: right;
+    display: none;
+}
+
+#strategyBoard {
+    width: 352px;
+    height: 352px;
+	margin: 0px 50px 20px 0px;
+	float: left;
+    display: none;
+}
+
+#aircraft{
+	position: relative;
+    width: 160px;
+    height: 32px;
+}
+
+#cruiser {
+    position: relative;
+    width: 96px;
+    height: 32px;
+}
+
+#battleship{
+	position: relative;
+    width: 128px;
+    height: 32px;
+}
+
+#submarine {
+    position: relative;
+    width: 96px;
+    height: 32px;
+}
+
+#destroyer{
+	position: relative;
+    width: 64px;
+    height: 32px;
+}
+
+.sheep {
+    /*background-color: #549919; */
+    /*border: 1px solid silver;*/
+    width: 28px;
+    height: 28px;
+    float: left;
+	background-color: #009900;
+    border-radius: 15px;
+    -webkit-transform: scale(0.9, 0.9);
+    background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #009900), color-stop(1, #00e300));
+    border: 2px solid #000000;
+}
+
+.boardDiv {
+    width: 30px;
+    height: 30px;
+    font-weight: bold;
+    float: left;
+	pointer-events: none;
+    border: 1px solid rgba(9, 0, 10, 0.63);
+    background-image: -webkit-gradient(linear, right top, left bottom, color-stop(0, #d7d2d5), color-stop(1, #e8e3e6));
+}
+
+.boardAux{
+	text-align: center;
+	margin: 0px 0px 0px 0px;
+	padding: 5px 0px 0px 0px;
+}
+
+.boardDivWater {
+	width: 30px;
+    height: 30px;
+    font-weight: bold;
+    float: left;
+	pointer-events: none;
+    border: 1px solid rgba(9, 0, 10, 0.63);
+	background-color: #add8e6;
+    background-image: -webkit-gradient(linear, left top, right bottom, color-stop(0, #add8e6), color-stop(1, #72dae6));
+}
