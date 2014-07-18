@@ -7,7 +7,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class CpuPlayer {
-    private static String NAME = "Martin bot v2.0";
+    private static String NAME = "Bot";
     //    private List<Ship> shipList;
     private List<Point> availablePointList;
     private int x;

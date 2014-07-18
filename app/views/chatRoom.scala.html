@@ -25,7 +25,7 @@
 		<div id="shipsBoardAircraft">
         	<div id="aircraft" class="Ntooltip">
 				<span>
-					Aircraft
+					@Messages("aircraft")
 				</span>
         		<div class="sheep"></div>
         		<div class="sheep"></div>
@@ -37,7 +37,7 @@
 		<div id="shipsBoardCruiser" class="Ntooltip">
         	<div id="cruiser">
 				<span>
-					Cruiser
+					@Messages("cruiser")
 				</span>
         		<div class="sheep"></div>
         		<div class="sheep"></div>
@@ -47,7 +47,7 @@
 		<div id="shipsBoardBattleship" class="Ntooltip">
         	<div id="battleship">
 				<span>
-					Battleship
+					@Messages("battleship")
 				</span>
         		<div class="sheep"></div>
         		<div class="sheep"></div>
@@ -58,7 +58,7 @@
 		<div id="shipsBoardSubmarine" class="Ntooltip">
         	<div id="submarine">
 				<span>
-					Submarine
+					@Messages("submarine")
 				</span>
         		<div class="sheep"></div>
         		<div class="sheep"></div>
@@ -68,7 +68,7 @@
 		<div id="shipsBoardDestroyer" class="Ntooltip">
         	<div id="destroyer">
 				<span>
-					Destroyer
+					@Messages("destroyer")
 				</span>
         		<div class="sheep"></div>
 				<div class="sheep"></div>
@@ -88,13 +88,13 @@
 <div id="buttonZone">
     <input id="xArea" type="text" placeholder="X">
     <input id="yArea" type="text" placeholder="Y">
-    <button id="sendStrategyBt" onclick="sendStrategy()">Send Strategy</button>
-    <button id="randomStrategyBt" onclick="sendRandomStrategy()">Send Random Strategy</button>
-    <button id="fireBt" onclick="fire()">Fire!</button>
-    <button id="autoBt" onclick="autoPlay()">Auto Play</button>
-    <button id="playersBt" onclick="playersInfo()">Players Info</button>
-    <button id="infoBt" onclick="getServerInfo()">Server Info</button>
-    <button id="hideChatBt" onclick="hideChat()">Chat</button>
+    <button id="sendStrategyBt" onclick="sendStrategy()">@Messages("send.strategy")</button>
+    <button id="randomStrategyBt" onclick="sendRandomStrategy()">@Messages("send.random.strategy")</button>
+    <button id="fireBt" onclick="fire()">@Messages("fire")</button>
+    <button id="autoBt" onclick="autoPlay()">@Messages("auto.play")</button>
+    <button id="playersBt" onclick="playersInfo()">@Messages("players.info")</button>
+    <button id="infoBt" onclick="getServerInfo()">@Messages("server.info")</button>
+    <button id="hideChatBt" onclick="hideChat()">@Messages("chat")</button>
 </div>
 
 <script src="@routes.Assets.at("javascripts/smoke.min.js")" type="text/javascript"></script>
