@@ -4,7 +4,7 @@
 
 <html>
     <head>
-        <title>BATTLESHIP GAME</title>
+        <title>@Messages("BATTLESHIP.GAME")</title>
         <meta http-equiv="X-UA-Compatible" content="chrome=1">
 		
         <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/bootstrap.css")">
@@ -36,13 +36,13 @@
 			<div class="topbar">
             	<div class="fill">
                 	<div class="container">
-                    	<a class="brand" href="@routes.Application.index()">DPOI - BATTLESHIP</a>
+                    	<a class="brand" href="@routes.Application.index()">DPOI - @Messages("BATTLESHIP")</a>
                         <p class="pull-right">
-                            Logged in as @connected —
-                            <a href="@routes.Application.index()">Disconnect</a>
+                            @Messages("logged.in.as") @connected —
+                            <a href="@routes.Application.index()">@Messages("disconnect")</a>
                         </p>
                     	<p class="pull-left">
-                        	<a href="@routes.Application.ranking">Ranking</a>
+                        	<a href="@routes.Application.ranking">@Messages("ranking")</a>
                     	</p>
                 	</div>
             	</div>
@@ -54,7 +54,7 @@
 					<form action="@routes.Application.chatRoom()">
 						<div id="black-opacity">
 							<input id="username" name="username" class="input-large" type="text" placeholder="Username">
-							<button id="btnSingIn" class="btn" type="submit">&{'hello'}Sign in</button>
+							<button id="btnSingIn" class="btn" type="submit">@Messages("sign.in")</button>
 						</div>
 					</form>
 				</div>
