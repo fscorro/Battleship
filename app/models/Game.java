@@ -4,7 +4,7 @@ import org.codehaus.jackson.node.ObjectNode;
 import play.libs.Json;
 import play.i18n.Messages;
 import play.i18n.Lang;
-
+import controllers.Language;
 import java.util.*;
 
 /**
@@ -29,6 +29,7 @@ public class Game {
             message(player, "autoPlay", "AutoPlay is Disable");
         } else {
             player.setAutoPlay(true);
+            System.out.println(Lang.availables().get(Language.getDefaultLang()));
             message(player, "autoPlay", "AutoPlay is Enable");
             if (player == currentPlayer) autoPlay();
         }
