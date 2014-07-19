@@ -3,6 +3,7 @@
 # ~~~~
 
 # Home page
+GET     /                                      controllers.Application.index()
 GET     /battleShip                            controllers.Application.index()
 GET     /battleShip/gameRoom                   controllers.Application.chatRoom(username: String ?= null)
 GET     /battleShip/gameRoom/Play              controllers.Application.game(username)
