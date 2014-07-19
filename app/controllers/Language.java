@@ -10,23 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Language extends Controller {
-
-    public static class Item {
-        public String code;
-        public int index;
-        public String switchUrl;
-        public Boolean active = false;
-        public String name ;
-
-        public Item(int index, String code, String switchUrl, Boolean active, String name) {
-            this.index = index;
-            this.code = code;
-            this.switchUrl = switchUrl;
-            this.active = active;
-            this.name = name;
-        }
-    }
-
     /**
 * Tries to determine default language based on users accept-languages
 *
@@ -38,6 +21,7 @@ public class Language extends Controller {
             String[] allowedList = Play.application().configuration().getString("application.langs").split(",");
             List<Lang> accepted = request().acceptLanguages();
 
+            String langCode = "";
             int langNumber = 0;
             boolean searchNext = true;
             for (Lang testLang : accepted) {
@@ -45,6 +29,7 @@ public class Language extends Controller {
                     int testNumber = 0;
                     for (String s : allowedList) {
                         if (s.equals(testLang.code())) {
+                            langCode = testLang.code();
                             langNumber = testNumber;
                             searchNext = false;
                         }
@@ -53,123 +38,20 @@ public class Language extends Controller {
                 }
             }
             session("play_user_lang", langNumber + "");
+            session("play_user_lang_code", langCode);
         }
         return Integer.parseInt(session("play_user_lang"));
     }
 
-    /**
-* Fetches translated message basing on users default language. If no label found falldown to first language
-*
-* @param key Key of the message
-* @return Translated message
-*/
-    public static String message(String key) {
-        String translated = Messages.get(Lang.availables().get(getDefaultLang()), key);
-        if (translated.equals(key)) {
-            translated = Messages.get(Lang.availables().get(0), key);
+    public static String getDefaultLangCode(){
+        if (session("play_user_lang_code") != null) {
+            return session("play_user_lang_code");
         }
-        return translated;
+        return "en";
     }
 
-    /**
-* Fetches translated message basing on users default language. If no label found, fall-down to first language
-*
-* @param key Key of the message
-* @param objects Additional objects
-* @return Translated message
-*/
-    public static String message(String key, Object... objects) {
-        System.out.println("AAAAAAAAAAAAAAAAAAAa: " + Lang.availables().get(getDefaultLang()));
-        String translated = Messages.get(Lang.availables().get(getDefaultLang()), key, objects);
-        if (translated.equals(key)) {
-            translated = Messages.get(Lang.availables().get(0), key, objects);
-        }
-        return translated;
-    }
-
-    /**
-* Allows to change users language
-*
-* @param code Language's code
-* @return Redirect to main page
-*/
-    public static Result changeLanguage(String code, String returnpath) {
-
-        Integer number = 0;
-
-        for (int i = 0; i < Lang.availables().size(); i++) {
-            if (Lang.availables().get(i).code().equals(code)) {
-                number = i;
-            }
-        }
-
-        if (Lang.availables().get(number) == null) {
-            getDefaultLang();
-        } else {
-            session("play_user_lang", number.toString());
-        }
-        return redirect("/" + returnpath);
-    }
-
-    public static Result changeLanguageHome(String code) {
-        return changeLanguage(code, "");
-    }
-
-    public static String changeLanguageLink(String code) {
-        return routes.Language.changeLanguage(code, request().path().substring(1)).toString();
-    }
-
-    /**
-* Returns code of the selected language, ie.: en
-*
-* @return code
-*/
-    public static Item currentLanguageItem() {
-        int i = getDefaultLang();
-        return new Item(
-                i,
-                Lang.availables().get(i).code(),
-                changeLanguageLink(Lang.availables().get(i).code()),
-                true,
-                getLanguageName(i)
-        );
-    }
-
-    private static String getLanguageName(int i) {
-        String[] languageNames = Play.application().configuration().getString("application.languageNames").split(",");
-        String languageName = Lang.availables().get(i).code();
-        if (languageNames[i]!=null){
-            languageName=languageNames[i];
-        }
-        return languageName.trim();
-    }
-
-    public static List<Item> otherLanguageItems() {
-        return languageItems(false);
-    }
-
-    public static List<Item> allLanguageItems() {
-        return languageItems(true);
-    }
-
-
-    public static List<Item> languageItems(boolean allItems) {
-        int currentId = getDefaultLang();
-        List<Item> items = new ArrayList<Item>();
-
-        for (int i = 0; i < Lang.availables().size(); i++) {
-
-            if (i != currentId || allItems) {
-                Item item = new Item(
-                        i,
-                        Lang.availables().get(i).code(),
-                        changeLanguageLink(Lang.availables().get(i).code()),
-                        (currentId == i),
-                        getLanguageName(i)
-                );
-                items.add(item);
-            }
-        }
-        return items;
+    public static Lang getLang()
+    {
+        return Lang.forCode(getDefaultLangCode());
     }
 }

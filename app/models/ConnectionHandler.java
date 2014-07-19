@@ -5,6 +5,8 @@ import org.codehaus.jackson.node.ObjectNode;
 import play.libs.F;
 import play.libs.Json;
 import play.mvc.WebSocket;
+import play.i18n.Lang;
+import play.i18n.Messages;
 
 import java.util.*;
 
@@ -17,20 +19,20 @@ public class ConnectionHandler {
     private static int gamesPlayed = 0;
     private static int activeGames = 0;
 
-    public static void join(String username, WebSocket.In<JsonNode> in, WebSocket.Out<JsonNode> out) {
+    public static void join(String username, Lang lang, WebSocket.In<JsonNode> in, WebSocket.Out<JsonNode> out) {
         Game lastGame = getLastGame();
         if (!lastGame.isPlayerOneDefined()) {
-            final Player player = new Player(username, out, lastGame.getGameId());
+            final Player player = new Player(username, lang, out, lastGame.getGameId());
             lastGame.setPlayerA(player);
             bingInWebSocket(in, player);
         } else if (!lastGame.isPlayerTwoDefined()) {
-            final Player player = new Player(username, out, lastGame.getGameId());
+            final Player player = new Player(username, lang, out, lastGame.getGameId());
             lastGame.setPlayerB(player);
             bingInWebSocket(in, player);
             lastGame.startGame();
         } else {
             createNewGame();
-            join(username, in, out);
+            join(username, lang, in, out);
 //            out.write(createServerFullMsg());
         }
     }
@@ -95,8 +97,8 @@ public class ConnectionHandler {
                     game.chat(player, "");
                 }
                 if (messageType.equals("serverInfo")) {
-                    Game.message(player, "info", "  " + activeGames + " Active Games" + " - " +
-                            gamesPlayed + " Total Games Played");
+                    Game.message(player, "info", "  " + activeGames + " " + Messages.get(player.getLang(), "active.games") + " - " +
+                            gamesPlayed + " " + Messages.get(player.getLang(), "total.games.played"));
                 }
             }
         });

@@ -3,6 +3,8 @@ package models;
 import org.codehaus.jackson.JsonNode;
 import play.mvc.WebSocket;
 
+import play.i18n.Lang;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -18,11 +20,13 @@ public class Player {
     private List<BoardPoint> shoots;
     private boolean autoPlay;
     private boolean ready;
+    private Lang language;
 
-    public Player(String name, WebSocket.Out<JsonNode> out, String id) {
+    public Player(String name, Lang lang, WebSocket.Out<JsonNode> out, String id) {
         username = name;
         channel = out;
         gameId = id;
+        language = lang;
         shoots = new LinkedList<BoardPoint>();
         autoPlay = false;
         ready = false;
@@ -35,6 +39,10 @@ public class Player {
     public void setStrategy(List<Ship> strategy) {
         this.strategy = strategy;
         ready = true;
+    }
+
+    public Lang getLang() {
+        return language;
     }
 
     public String getUsername() {

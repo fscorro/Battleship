@@ -26,11 +26,11 @@ public class Game {
     public void toggleAutoPlay(Player player) {
         if (player.isAutoPlay()) {
             player.setAutoPlay(false);
-            message(player, "autoPlay", "AutoPlay is Disable");
+            message(player, "autoPlay", Messages.get(player.getLang(), "autoPlay.disable"));
         } else {
             player.setAutoPlay(true);
-            System.out.println(Lang.availables().get(Language.getDefaultLang()));
-            message(player, "autoPlay", "AutoPlay is Enable");
+            System.out.println(player.getLang());
+            message(player, "autoPlay", Messages.get(player.getLang(), "autoPlay.enable"));
             if (player == currentPlayer) autoPlay();
         }
     }
@@ -77,8 +77,8 @@ public class Game {
     }
 
     private void requestStrategy(final Player player) {
-        message(player, "askStrategy", "Set all your the ships and press SEND button");
-        message(player, "timer", "You have 1 minute left");
+        message(player, "askStrategy", Messages.get(player.getLang(), "set.all.ships"));
+        message(player, "timer", Messages.get(player.getLang(), "minute.left"));
 
         TimerTask strategyTimeOutReminder = new TimerTask() {
             int counter = 0;
@@ -96,10 +96,10 @@ public class Game {
         if (!player.isReady()) {
             int remainingTime = 60 - counter;
             if (remainingTime <= 0) {
-                message(player, "timer", "Time it's up, Your Strategy will be randomly selected");
+                message(player, "timer", Messages.get(player.getLang(), "time.up"));
                 timeOut(player);
             } else {
-                message(player, "timer", "Hurry Up!, You have only " + remainingTime + " seconds to set Strategy");
+                message(player, "timer", Messages.get(player.getLang(), "hurry.up.remaining.time", remainingTime));
             }
         }
     }
@@ -121,7 +121,7 @@ public class Game {
     private void sendStrategy(Player playerTo, List<Ship> strategy) {
         final ObjectNode json = Json.newObject();
         json.put("type", "strategy");
-        json.put("message", "Placing Your Ships in the board...");
+        json.put("message", Messages.get(playerTo.getLang(), "placing.ships.board"));
         String strategyData = Json.toJson(strategy).toString();
         json.put("strategy", strategyData);
         playerTo.getChannel().write(json);
@@ -132,11 +132,11 @@ public class Game {
         String name = getCurrentPlayer().getUsername().toUpperCase();
         String x = point.getX() + "";
         String y = point.getY() + "";
-        String shootMsg = " shot " + "[ " + x + " - " + y + " ]. Result: " + result.toString();
         String shootPoint = x + y;
         updateBot(point, result);
-        sendShot(getCurrentPlayer(), "my-shot", "You " + shootMsg, shootPoint, result.toString());
-        sendShot(getAlternative(), "op-shot", name + shootMsg, shootPoint, result.toString());
+        String msgResult = Messages.get(getCurrentPlayer().getLang(), result.toString());
+        sendShot(getCurrentPlayer(), "my-shot", Messages.get(getCurrentPlayer().getLang(), "your.shoot.msg", x, y, msgResult), shootPoint, result.toString());
+        sendShot(getAlternative(), "op-shot", Messages.get(getCurrentPlayer().getLang(), "shoot.msg", name, x, y, msgResult), shootPoint, result.toString());
     }
 
     private void updateBot(BoardPoint point, ShootResult result) {
@@ -189,7 +189,7 @@ public class Game {
             notifyStrategyReceived(player);
         } else {
             setRandomStrategy(actual);
-            message(player, "strategyReceived", "You strategy was invalid, A random strategy was set.");
+            message(player, "strategyReceived", Messages.get(player.getLang(), "invalid.strategy"));
             notifyStrategyReceived(player);
         }
 
@@ -199,22 +199,22 @@ public class Game {
     }
 
     private void notifyStrategyReceived(Player player) {
-        message(player, "strategyReceived", "You are Ready, Waiting for other player.");
+        message(player, "strategyReceived", Messages.get(player.getLang(), "ready.wait.another.player"));
     }
 
     public void setPlayerA(Player playerOne) {
         this.playerOne = playerOne;
-        message(playerOne, "wait", "Waiting for other player to join.....");
+        message(playerOne, "wait", Messages.get(playerOne.getLang(), "waiting.players"));
     }
 
     private void notifyStart() {
-        message(playerOne, "start", "The Battle is ON !!! , You're playing against " + playerTwo.getUsername());
-        message(playerTwo, "start", "The Battle is ON !!! , You're playing against " + playerOne.getUsername());
+        message(playerOne, "start", Messages.get(playerOne.getLang(), "battle.on.playing.against", playerTwo.getUsername()));
+        message(playerTwo, "start", Messages.get(playerTwo.getLang(), "battle.on.playing.against", playerOne.getUsername()));
     }
 
     private void notifyTurn() {
-        message(getCurrentPlayer(), "play", "It's your turn!");
-        message(getAlternative(), "wait", "Other player's move!");
+        message(getCurrentPlayer(), "play", Messages.get(getCurrentPlayer().getLang(), "your.turn"));
+        message(getAlternative(), "wait", Messages.get(getCurrentPlayer().getLang(), "other.player.move"));
     }
 
     private ShootResult shoot(BoardPoint point) {
@@ -232,7 +232,7 @@ public class Game {
         leavers++;
         if (playerOne != null && playerTwo != null) {
             Player notQuitter = isCurrent(player) ? getAlternative() : getCurrentPlayer();
-            message(notQuitter, "leave", "Other played left the game!");
+            message(notQuitter, "leave", Messages.get(player.getLang(), "other.player.left"));
         }
     }
 
@@ -241,7 +241,7 @@ public class Game {
             chatMessage(playerOne, "chat", player.getUsername(), talk);
             chatMessage(playerTwo, "chat", player.getUsername(), talk);
         } else {
-            message(player, "wait", "Still Waiting for oponent....");
+            message(player, "wait", Messages.get(player.getLang(), "still.waiting"));
         }
     }
 
@@ -255,7 +255,7 @@ public class Game {
                 y = 0;
             }
             if ((x.equals("")) || y == 0 || x.length() != 1 || y < 0 || y > 10) {
-                message(player, "mistake", "Can't register empty or wrong shots, try again");
+                message(player, "mistake", Messages.get(player.getLang(), "cant.register.empty.shoot"));
             } else {
                 moveCalculation(new BoardPoint(x.charAt(0), y));
                 if (isTheWinner()) {
@@ -265,12 +265,12 @@ public class Game {
                     changeTurn();
                 }
             }
-        } else if (start) message(player, "wait", "Not your move!");
-        else message(player, "wait", "Still Waiting for oponent....");
+        } else if (start) message(player, "wait", Messages.get(player.getLang(), "not.your.turn"));
+        else message(player, "wait", Messages.get(player.getLang(), "still.waiting"));
     }
 
     private void notifyEnd(Player player) {
-        String endMsg = "The Winner is " + getCurrentPlayer().getUsername() + " !!!, (Shoots made: " + getCurrentPlayer().getShoots().size() + " )";
+        String endMsg =   Messages.get(player.getLang(), "still.waiting", getCurrentPlayer().getUsername(), getCurrentPlayer().getShoots().size());
         message(player, "end", endMsg);
     }
 
