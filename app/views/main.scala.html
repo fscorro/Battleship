@@ -17,20 +17,55 @@
 		}
 
         <script type="text/javascript">
-                  var _gaq = _gaq || [];
-                  _gaq.push(['_setAccount', 'UA-32114287-1']);
-                  _gaq.push(['_trackPageview']);
-
-                  (function() {
-                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-                  })();
+                  function checkLoginState() {
+                      FB.getLoginStatus(function(response) {
+                          if (response.status === 'connected') {
+                              console.log(response.authResponse.accessToken);
+                              FB.api('/me', function(response) {
+                                  console.log(JSON.stringify(response));
+                                  name= response.first_name+" "+response.last_name;
+                                  console.log(name);
+                                  document.querySelector("#username").value = name;
+                                  document.querySelector("#loginForm").submit();
+                              });
+                          }
+                          console.log(response);
+                      });
+                  }
         </script>
+
 
     </head>
 
     <body>
+
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '605996112850695',
+                xfbml      : true,
+                version    : 'v2.0'
+            });
+            /*
+            FB.getLoginStatus(function(response) {
+                if (response.status === 'connected') {
+                    console.log('Logged in.');
+                }
+                else {
+                    FB.login();
+                }
+            });*/
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
         <!--[if IE]><h3 class=chromeframe>Your browser can't render this site. <a href="http://www.google.com/chromeframe/?redirect=true">Click to Fix it!</a></h3><![endif]-->
         @if(connected != null) {
 			<div class="topbar">
@@ -51,12 +86,17 @@
         <div class="container">
 			@if(connected == null) {
 				<div id="login">
-					<form action="@routes.Application.chatRoom()">
+					<form id="loginForm" action="@routes.Application.chatRoom()">
 						<div id="black-opacity">
 							<input id="username" name="username" class="input-large" type="text" placeholder="Username">
 							<button id="btnSingIn" class="btn" type="submit">@Messages("sign.in")</button>
+                            <fb:login-button scope="public_profile" onlogin="checkLoginState();">
+                        </fb:login-button>
+
 						</div>
 					</form>
+
+
 				</div>
 				<div id="game">
 					<img src="@routes.Assets.at("images/background.png")" alt="">
