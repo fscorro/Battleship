@@ -52,4 +52,7 @@ shoot.msg={0} shoot [ {1} - {2} ]. Result: {3}.
 MISS=MISS
 HIT=HIT
 SINK=SINK
+will.be.collision=There will be a collision. Please, move your ship and try again!.
+ships.cant.touch=Ships can\'t touch each other.
+ship.out.board=The ship is out of board.
 locale=en

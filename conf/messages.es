@@ -52,4 +52,7 @@ shoot.msg={0} disparo [ {1} - {2} ]. Resultado: {3}.
 MISS=AGUA
 HIT=IMPACTO
 SINK=HUNDIDO
+will.be.collision=Habra una colision. Por favor, mueve tu barco e intenta de nuevo!.
+ships.cant.touch=Los barcos no se pueden tocar.
+ship.out.board=El barco esta fuera del tablero.
 locale=es

@@ -1,6 +1,6 @@
-const msg1 = 'There will be a collision. Please, move your ship and try again!.';
-const msg2 = 'Ships can\'t touch each other.';
-const msg3 = 'The ship is out of board.';
+var msg1 = $.i18n.prop('will.be.collision');
+var msg2 = $.i18n.prop('ships.cant.touch');
+var msg3 = $.i18n.prop('ship.out.board');
 
 var width = 32;
 var aircraft = [];
@@ -34,7 +34,7 @@ function setDobleClickFunction(ship, shipPosition, quantity, obj){
 	        test = testCollision({'x':ship.point[0].x, 'y':ship.point[0].y}, {'x':ship.point[0].x, 'y':ship.point[0].y + quantity}, obj.id);
 	    }
 	    if (test) {
-	    	alert(msg1);
+	    	alert($.i18n.prop('will.be.collision'));
 	    } else {
 			if (shipPosition != 0) {
 				shipPosition = 0;
@@ -74,15 +74,15 @@ $("#strategyBoard").droppable({
         //test collision
         switch (testCollision(pointC, pointD, ship)) {
 			case 1:
-				alert(msg1);
+				alert($.i18n.prop('will.be.collision'));
 				animationBack(ship, ui.draggable);
 	            return false;
 			case 2:
-				alert(msg2);
+				alert($.i18n.prop('ships.cant.touch'));
 				animationBack(ship, ui.draggable);
 	            return false;
 			case 3:
-				alert(msg3);
+				alert($.i18n.prop('ship.out.board'));
 				animationBack(ship, ui.draggable);
 	            return false;
 		}
